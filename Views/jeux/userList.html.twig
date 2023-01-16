@@ -1,0 +1,23 @@
+{% extends "./pages/user/pageUtilisateur.html.twig" %}
+{% block jeuxUser %}
+<section class="wrapper d-flex flex-column align-items-center mb-5 gap-5">
+    {% for jeu in jeux %}
+    <div class="jeu-container {{jeu.Nom_cat}} d-flex gap-3 justify-content-center align-items-center rounded px-2">
+        <a href="index.php?jeu&nom={{jeu.Nom}}" class="d-flex gap-3 justify-content-center rounded p-2">
+            <img class="jeu-container__img w-50 rounded" src="{{jeu.img}}" />
+            <div class="jeu-container__details d-flex flex-column w-50 pt-2">
+                <h3 class="align-top nom-jeu">{{jeu.Nom}}</h3>
+                <p class="rules">{{jeu.Regles}}</p>
+                <div class="cat d-flex flex-row">
+                    <p class="text-white p-2 bg-info rounded-pill">{{jeu.Nom_cat}}</p>
+                    {% if session.access == "oui" and user == session.conUser.pseudo %}
+                    <button type="button" class="btn btn-outline-primary">Modifier</button>
+                    <button type="button" class="btn btn-outline-danger">Supprimer</button>
+                    {% endif %}
+                </div>
+            </div>
+        </a>
+    </div>
+    {% endfor %}
+</section>
+{% endblock %}

@@ -1,0 +1,79 @@
+{% extends "./pages/accueil/accueil.html.twig" %}
+{% block publicUnfilteredList %}
+<header class="header mb-5">
+    <nav class="text-white flex flex-row-reverse">
+        {% if session.access == "oui" %}
+        <ul class="flex items-start list-unstyled gap-2 me-2">
+            <li>Bonjour {{session.conUser.pseudo}}!</li>
+            <li>
+                <form action="index.php" method="post"><input type="submit" name="deconnexion" value="Se déconnecter"
+                        class="bg-transparent">
+                </form>
+            </li>
+            <li>Connecté</li>
+        </ul>
+        {% else %}
+        <ul class="flex items-start list-unstyled gap-2 me-2">
+            <li><a href="index.php/connexion">Connexion</a></li>
+            <li>Pas connecté</li>
+            <li>Pas connecté</li>
+        </ul>
+        {% endif %}
+    </nav>
+    <div class="flex flex-col justify-center items-center h-75">
+        <img src="img/A quoi on joue.png" alt="">
+    </div>
+</header>
+<h2 class="text-center mb-5">Les jeux en vogue</h2>
+<div class="filtres flex flex-col justify-center mb-5 gap-3">
+    <div id="filtres-dropdown" class="flex justify-center">
+        <h4><label for="filtres">Filtrer par catégorie : </label></h4>
+        <select name="filtres" id="filtres">
+            <option value="Jeux">Tous les jeux</option>
+            <option value="plateau">Jeux de plateau</option>
+            <option value="cartes">Jeux de cartes</option>
+        </select>
+    </div>
+    <div id="filtres-recherche" class="flex justify-center">
+        <h4><label for="recherche_jeu"></label>...Ou par nom (WIP) : </h4>
+        <input type="text" name="recherche_jeu" id="recherche_jeu">
+    </div>
+</div>
+
+<section class="wrapper flex flex-col items-center mb-5 gap-5">
+    {% for jeu in jeux %}
+    <div class="jeu-container {{jeu.nom_cat}} flex gap-3 justify-center items-center rounded px-2"
+        data-nom="{{jeu.nom}}">
+        <a href="index.php?jeu&nom={{jeu.nom}}" class="flex gap-3 justify-center rounded p-2">
+            <img class="jeu-container__img w-1/2 rounded" src="{{jeu.img}}" />
+            <div class="jeu-container__details flex flex-col w-1/2 pt-2">
+                <h3 class="align-top nom-jeu">{{jeu.nom}}</h3>
+                <p class="rules">{{jeu.regles}}</p>
+                <div class="cat flex">
+                    <p class="text-white p-2 bg-teal-500 rounded-full py-2 px-4">{{jeu.nom_cat}}</p>
+                </div>
+                {% if session.access == "oui" and session.conUser.admin == 1 %}
+                <div class="buttons flex flex-row gap-2 justify-end">
+                <button type="button" class="btnDelete inline-block align-middle text-center select-none border font-normal whitespace-no-wrap rounded py-1 px-3 leading-normal no-underline text-red-600 border-red-600 hover:bg-red-600 hover:text-white bg-white hover:bg-red-700" data-nom="{{jeu.nom}}">Supprimer</button>
+                <button type="button" class="btnEdit inline-block align-middle text-center select-none border font-normal whitespace-no-wrap rounded py-1 px-3 leading-normal no-underline text-blue-600 border-blue-600 hover:bg-blue-600 hover:text-white bg-white hover:bg-blue-600" data-nom="{{jeu.nom}}">Modifier</button>
+                </div>
+                {% endif %}
+            </div>
+        </a>
+    </div>
+    {% endfor %}
+</section>
+{% if session.access == "oui" %}
+<div class="ajout_jeu text-center flex flex-col items-center">
+    <h2>Vous ne retrouvez pas votre jeu favori ?</h2>
+    <h3>Proposez-le ici !</h3>
+    <button class="btn inline-block align-middle text-center select-none border font-normal whitespace-no-wrap rounded py-1 px-3 leading-normal no-underline text-blue-600 border-blue-600 hover:bg-blue-600 hover:text-white bg-white hover:bg-blue-600"><a href="index.php/proposerJeu">Proposer un jeu</a></button>
+</div>
+{% else %}
+<div class="message-non_connecte flex flex-col justify-center items-center">
+    <h3>Veuillez vous connecter afin d'ajouter un jeu</h3>
+    <button class="btn inline-block align-middle text-center select-none border font-normal whitespace-no-wrap rounded py-1 px-3 leading-normal no-underline text-blue-600 border-blue-600 hover:bg-blue-600 hover:text-white bg-white hover:bg-blue-600"><a href="index.php/connexion">S'inscrire / Se
+            connecter</a></button>
+</div>
+{% endif %}
+{% endblock %}

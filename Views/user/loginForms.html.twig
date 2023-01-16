@@ -1,0 +1,30 @@
+{% extends "./pages/login/loginForms.html.twig" %}
+{% block authentificationForms %}
+<section id="formulaires" class="d-flex flex-column justify-content-center">
+    <div class="slider">
+        <p class="text-center">slider</p>
+    </div>
+    <div class="forms d-flex flex-row justify-content-around align-items-center">
+        <form action="../index.php" method="post" class="d-flex flex-column" autocomplete="off">
+            <h2 class="text-center">Inscription</h2>
+            <input type="text" name="nom" id="nom" placeholder="Votre nom">
+            <input type="text" name="prenom" id="prenom" placeholder="Votre prénom">
+            <input type="text" name="pseudo" id="pseudo" placeholder="Choisissez un pseudonyme">
+            <input type="email" name="login" id="emailInsc" placeholder="Votre adresse e-mail">
+            <input type="email" name="emailVerif" id="emailVerif" placeholder="Vérifiez votre adresse e-mail">
+            <input type="password" name="mdp" id="mdpInsc" placeholder="Choissez un mot de passe">
+            <input type="password" name="mdpVerif" id="mdpVerif" placeholder="Vérifiez votre mot de passe">
+            <button type="submit" name="inscription" value="inscription" class="btn btn-outline-primary">Je m'inscris
+                !</button>
+
+    
+        </form>
+        <form action="../index.php" method="POST" class="d-flex flex-column" autocomplete="off">
+            <h2 class="text-center">Connexion</h2>
+            <input type="email" name="emailCon" id="emailCon" placeholder="Adresse e-mail">
+            <input type="password" name="mdpCon" id="mdpCon" placeholder="Mot de passe">
+            <input type="submit" name="connexion" value="Connexion" class="btn btn-outline-primary">
+        </form>
+    </div>
+</section>
+{% endblock %}

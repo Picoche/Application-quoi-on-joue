@@ -1,0 +1,90 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  color-scheme: dark light;
+}
+
+a,
+a:hover {
+  text-decoration: none;
+  color: inherit;
+}
+
+body {
+  min-height: 100vh;
+  font-size: 62.5%;
+  overflow-x: hidden;
+}
+
+.header {
+  background-image: url("../../../img/main-bg.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  height: 75vh;
+}
+
+.switch {
+  transform: translateY(-100px);
+  transition: all 0.8s;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.switched {
+  transform: translateY(0);
+  transition: all 0.8s;
+  opacity: 1;
+}
+
+.jeu-container {
+  width: 60%;
+  -webkit-box-shadow: 0px 0px 10px 4px #ccc;
+  box-shadow: 0px 0px 10px 4px #ccc;
+  transition: all 0.6s;
+  overflow: hidden;
+}
+
+.jeu-container:hover {
+  transform: scale(1.15);
+  transition: all 0.6s;
+  cursor: pointer;
+  -webkit-box-shadow: 0px 0px 15px 10px #bbb;
+  box-shadow: 0px 0px 20px 15px #bbb;
+}
+
+.rules {
+  --max-lines: 3.2;
+  --line-height: 1.4;
+
+  max-height: calc(var(--max-lines) * 1em * var(--line-height));
+
+  font-size: 1rem;
+  overflow: hidden;
+  position: relative;
+}
+
+.rules::before {
+  content: "";
+  position: absolute;
+  top: 60%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: linear-gradient(to right bottom, transparent, white 99%);
+  background-position: bottom;
+  pointer-events: none;
+}
+
+.cat {
+  font-size: 0.8rem;
+}

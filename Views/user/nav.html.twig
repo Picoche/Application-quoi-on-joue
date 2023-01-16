@@ -1,0 +1,17 @@
+{% block nav %}
+<nav class="text-white d-flex flex-row-reverse">
+    {% if session.access == "oui" %}
+    <ul class="d-flex align-items-start list-unstyled gap-2 me-2">
+        <li>Bonjour {{user.pseudo}}!</li>
+        <li>Connecté</li>
+        <li>Connecté</li>
+    </ul>
+    {% else %}
+    <ul class="d-flex align-items-start list-unstyled gap-2 me-2">
+        <li>Pas connecté</li>
+        <li>Pas connecté</li>
+        <li>Pas connecté</li>
+    </ul>
+    {% endif %}
+</nav>
+{% endblock %}

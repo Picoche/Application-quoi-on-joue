@@ -1,0 +1,24 @@
+{% extends "./pages/proposerJeux/proposerJeu.html.twig" %}
+{% block proposerJeuForm %}
+{{dump(session)}}
+<section id="formulaireContainer" class="form d-flex flex-row justify-content-around align-items-center">
+    <form enctype="multipart/form-data" action="../index.php" method="post" class="d-flex flex-column"
+        autocomplete="off">
+        <h2 class="text-center">Proposer un jeu</h2>
+        <input type="text" name="Nom" id="Nom" placeholder="Le nom du jeu">
+        <input type="text" name="Temps_moy" id="Temps_moy" placeholder="Temps moyen d'une partie">
+        <textarea name="Regles" id="Materiel" placeholder="Les règles du jeu"></textarea>
+        <textarea name="Materiel" id="Materiel" placeholder="Le matériel nécessaire"></textarea>
+        <input type="text" name="NB_joueurs" id="NB_joueurs" placeholder="Nombre de joueurs maximum">
+        <input type="file" name="img" id="img">
+        <select name="Nom_cat" id="Nom_cat">
+            <option value="">--Choisissez une catégorie--</option>
+            {% for categorie in categories %}
+            <option value="{{categorie.nom_cat}}">{{categorie.nom_cat}}</option>
+            {% endfor %}
+        </select>
+        <button type="submit" name="proposition" value="proposition" class="btn btn-outline-primary">Je propose ce jeu
+            !</button>
+    </form>
+</section>
+{% endblock %}

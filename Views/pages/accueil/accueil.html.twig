@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Tailwind -->
+    <link href="/dist/output.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="./Views/pages/accueil/accueil.css">
+
+
+    <!-- Custom JS -->
+    <script src="./Views/pages/accueil/sortGames.js" defer></script>
+    <script src="./Views/pages/accueil/admin.js" defer></script>
+
+    <title>À quoi on joue ?</title>
+</head>
+
+<body>
+    {% block publicUnfilteredList %}
+    {% endblock %}
+</body>
+
+</html>

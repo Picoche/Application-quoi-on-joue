@@ -1,0 +1,35 @@
+{% extends "./pages/user/pageUtilisateur.html.twig" %}
+{% block Utilisateur %}
+<header class="header mb-5">
+    <nav class="text-white d-flex justify-content-between">
+        <a href="index.php" class="ms-3"><img src="img/A quoi on joue - bandeau" alt=""></a>
+        {% if session.access == "oui" %}
+        <ul class="d-flex list-unstyled gap-2 me-2">
+            <li>Bonjour {{session.conUser.pseudo}}!</li>
+            <li>
+                <form action="index.php" method="post"><a href="index.php"><input type="submit" name="deconnexion"
+                            value="Se déconnecter" class="bg-transparent"></a>
+                </form>
+            </li>
+            <li>Connecté</li>
+        </ul>
+        {% else %}
+        <ul class="d-flex list-unstyled gap-2 me-2">
+            <li><a href="index.php/connexion">Connexion</a></li>
+            <li>Pas connecté</li>
+            <li>Pas connecté</li>
+        </ul>
+        {% endif %}
+    </nav>
+    <div class="d-flex flex-column justify-content-center align-items-center h-75">
+        <h1 class="align-center d-flex align-items-center">{{user.Pseudo}}</h1>
+    </div>
+</header>
+
+<p>Nom : {{user.Nom}}</p>
+<p>Prénom : {{user.Prenom}}</p>
+<p>Adresse e-mail : {{user.Login}}</p>
+<p>Date d'inscription : {{user.Date_insc}}</p>
+
+<h5 class="mb-5">Jeux proposés par {{user.Pseudo}} :</h5>
+{% endblock %}

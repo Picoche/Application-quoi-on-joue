@@ -1,0 +1,88 @@
+{% extends "./pages/jeu/jeu.html.twig" %}
+{% block publicDetailsGame %}
+{% set link = 'url(img/' ~ jeu.img ~ ')' %}
+<header class="header mb-5">
+    <nav class="text-white d-flex justify-content-between">
+        <a href="index.php" class="ms-3"><img src="img/A quoi on joue - bandeau" alt=""></a>
+        {% if session.access == "oui" %}
+        <ul class="d-flex list-unstyled gap-2 me-2">
+            <li>Bonjour {{session.conUser.pseudo}}!</li>
+            <li>
+                <form action="index.php" method="post"><a href="index.php"><input type="submit" name="deconnexion"
+                            value="Se déconnecter" class="bg-transparent"></a>
+                </form>
+            </li>
+            <li>Connecté</li>
+        </ul>
+        {% else %}
+        <ul class="d-flex list-unstyled gap-2 me-2">
+            <li><a href="index.php/connexion">Connexion</a></li>
+            <li>Pas connecté</li>
+            <li>Pas connecté</li>
+        </ul>
+        {% endif %}
+    </nav>
+    <div class="d-flex flex-column justify-content-center align-items-center h-75">
+        <h1 class="align-center d-flex align-items-center">{{jeu.nom}}</h1>
+    </div>
+</header>
+
+<h5>Suggéré par : <a href="index.php?user&pseudo={{jeu.pseudo}}">{{jeu.pseudo}}</a></h5>
+<section class="details d-flex gap-5">
+    <div class="text-container d-flex justify-content-center align-items-center flex-column">
+        <div class="rules-container d-flex justify-content-center align-items-center flex-column w-50">
+            <h2 class="rules-title">Règles</h2>
+            <p class="rules">{{jeu.regles}}</p>
+        </div>
+
+        <div class="materiel-container justify-content-center align-items-center d-flex flex-column w-50">
+            <h2 class="materiel-title">Matériel</h2>
+            <p class="materiel">{{jeu.materiel}}</p>
+        </div>
+    </div>
+    <aside class="d-flex justify-content-center align-items-center">
+        <img src="{{jeu.img}}" alt="Image du jeu {{jeu.nom}}" class="desc-img">
+    </aside>
+</section>
+
+<section class="wrapper">
+    {% set i = 0 %}
+    {% set total = 0 %}
+    {% for com in coms %}
+    {% set total = total + com.note %}
+    {% set i = i + 1 %}
+    {% endfor %}
+    {% if total <= 0 %} <h3>{{"Ce jeu n'a pas encore été noté !"}}</h3>
+        {% else %}
+        <h3 class="note-moy">Note moyenne : {{total}}/5</h3>
+        {% endif %}
+        <div class="commentaires-container d-flex align-items-center flex-column gap-3">
+            <h2>Commentaires</h2>
+            {% for com in coms %}
+            <div class="commentaire d-flex flex-column justify-content-center align-items-center">
+                <h3>{{ com.pseudo }}, {{com.note }}</h3>
+                <p>Ajouté le {{ com.ajout }}</p>
+                <p>{{com.commentaire}}</p>
+            </div>
+            {% endfor %}
+            {% if session.access == "oui" %}
+            <div class="eval d-flex flex-column">
+                <form action="#" method="post" class="d-flex flex-column justify-content-center align-items-center">
+                    <label for="commentaire">Vous aussi, partagez votre ressenti sur ce jeu !</label>
+                    <textarea name="commentaire" id="commentaire" cols="30" rows="10"></textarea>
+                    <label for="rating">Notez ce jeu entre 0 et 5 !</label>
+                    <input type="text" name="note" id="rating" max="5" min="0">
+                    <input type="submit" name="subCom" value="Envoyer" class="btn btn-outline-primary">
+                    <input type="hidden" name="nom" value="{{jeu.nom}}">
+                </form>
+            </div>
+            {% else %}
+            <div class="message-non_connecte d-flex flex-column justify-content-center align-items-center">
+                <h3>Veuillez vous connecter afin de laisser un commentaire</h3>
+                <button class="btn btn-outline-primary"><a href="index.php/connexion">S'inscrire / Se
+                        connecter</a></button>
+            </div>
+            {% endif %}
+        </div>
+</section>
+{% endblock %}
