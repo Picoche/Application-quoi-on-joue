@@ -4,7 +4,7 @@ Application web type bibliothèque de jeux de société réalisée en PHP/JS et 
 Les fonctionnalités incluent :
 
 
-*Utilisateurs de l'application*
+**Utilisateurs de l'application**
 
 - La création d'un compte utilisateur
 - La proposition d'ajout d'un nouveau jeu par un utilisateur connecté
@@ -12,7 +12,7 @@ Les fonctionnalités incluent :
 - Consulter son propre profil et les jeux proposés
 - Consulter le profil d'un autre utilisateur en cliquant sur son pseudonyme (section commentaires ou mention "jeu proposé par")
 
-*Administrateurs*
+**Administrateurs**
 
 - La validation ou refus de l'ajout d'un jeu proposé par un utilisateur via une page "Administration", inaccessible aux utilisateurs
 - La suppression d'un jeu via un bouton "Supprimer" disposé sous chaque jeu, invisible aux utilisateurs
