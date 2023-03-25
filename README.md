@@ -18,3 +18,5 @@ Les fonctionnalités incluent :
 - La suppression d'un jeu via un bouton "Supprimer" disposé sous chaque jeu, invisible aux utilisateurs
 - La suppression d'un commentaire
 - L'ajout immédiat d'un jeu
+
+L'application n'a évidemment pas été créée pour une utilisation publique, certaines options non citées mais visibles sur le site ne fonctionnent pas.
